@@ -1,32 +1,44 @@
 {% extends "base.html" %}
 {% block body %}
-    <form action="{{ url_for('index') }}" method="post">
-        <div class="form-group">
-            <div class="col-md-4">
-                <label for="fromCurr">From:</label>
-                <select id="fromCurr" class="form-control" name="fromCurr">
-                    {% for data in currency %}
-                        <option>{{ data }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
+<form action="{{ url_for('index') }}" method="post">
+    <div class="form-group">
+        <div class="col-md-4">
+            <label for="fromCurr">From:</label>
+            <select id="fromCurr" class="form-control" name="fromCurr">
+                {% for data in currency %}
+                <option>{{ data }}</option>
+                {% endfor %}
+            </select>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-4">
-                <label for="toCurr">To:</label>
-                <select id="toCurr" class="form-control" name="toCurr">
-                    {% for data in currency %}
-                        <option>{{ data }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control" value="{{ result }}" disabled placeholder="Exchange Rates">
-        </div>
-        <button type="submit" class="btn btn-primary btn-large">Get Exchange Rates</button>
-    </form>
+    </div>
 
+    <div class="form-group">
+        <div class="col-md-4">
+            <label for="toCurr">To:</label>
+            <select id="toCurr" class="form-control" name="toCurr">
+                {% for data in currency %}
+                <option>{{ data }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" value="{{ result }}" disabled placeholder="Exchange Rates">
+    </div>
+    <button type="submit" class="btn btn-primary btn-large">Get Exchange Rates</button>
+</form>
+<br>
+
+<form action="{{ url_for('index') }}" method="post">
+<label for="start"><strong>Historical data</strong> </label>
+
+<input type="date" id="start" value="{{ maximum }}"
+       min="{{ minimum }}" max="{{ maximum }}"/>
+<div class="form-group">
+    <input type="text" class="form-control" disabled
+           placeholder="Currently we are supporting historical data only upto 7 days"/>
+</div>
+<button type="submit" class="btn btn-primary btn-large">Get Historical data</button>
+</form>
 {% endblock %}
