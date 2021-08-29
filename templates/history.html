@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% block body %}
+
+ <form action="{{ url_for('history') }}" method="post">
+        <label for="start"><strong>Historical data</strong> </label>
+
+        <input type="date" id="start" value="{{ maximum }}"
+               min="{{ minimum }}" max="{{ maximum }}" name="date"/>
+        <div class="form-group">
+            <input type="text" class="form-control" disabled
+                   placeholder="Currently we are supporting historical data only upto 7 days"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large">Get Historical data</button>
+
+
+    </form>
+    {% if historical_data %}
+        <style>
+        table, th, td { border: 1px solid black}
+        </style>
+        <table>
+            <tr>
+                <th>Date </th>
+                <th>Price</th>
+            </tr>
+        <tr>
+        {% for data in historical_data %}
+            <tr><td>{{ data[0] }}</td><td> {{ data[1] }}</td></tr>
+                {% endfor %}
+        </tr>
+    {% endif %}
+    </table>
+
+
+{% endblock %}
